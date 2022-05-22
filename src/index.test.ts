@@ -1,6 +1,6 @@
 const lib = require('./index');
 
 test('should work', () => {
-  expect(true).toEqual(true);
+  expect(true).toEqual(false);
   console.log({ lib });
 });
