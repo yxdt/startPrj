@@ -4,16 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "build": "tsc -p tsconfig.json",
-    "precommit": "npm test && lint-staged"
+    "precommit": "npm test && npx lint-staged"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@types/jest": "^27.5.1",
     "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "husky": "^8.0.1",
     "jest": "^28.1.0",
     "lint-staged": "^12.4.1",
@@ -31,9 +43,16 @@
     },
     "testRegex": ".*\\.test\\.ts$"
   },
-  "lint-staged":{
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
     "src/**/*.ts": [
-      "prettier --write --single-quote --trailing-comma es2016",
+      "prettier --write --single-quote --trailing-comma es5",
+      "eslint --fix",
       "git add"
     ]
   }
