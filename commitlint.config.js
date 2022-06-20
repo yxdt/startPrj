@@ -15,25 +15,23 @@ const types = [
   'revert', // 回滚某个更早的提交
   'style', // 不影响程序逻辑的代码修改、主要是样式方面的优化、修改
   'test', // 测试相关的开发,
-],
-typeEnum = {
+];
+const typeEnum = {
   rules: {
     'type-enum': [2, 'always', types],
   },
-  value: () => {
-    return types;
-  },
+  value: () => types,
 };
 
 module.exports = {
-extends: ['@commitlint/config-conventional'],
-/*
+  extends: ['@commitlint/config-conventional'],
+  /*
 Level [0..2]: 0 disables the rule. For 1 it will be considered a warning for 2 an error.
 https://commitlint.js.org/#/reference-rules
 */
-rules: {
-  'type-enum': typeEnum.rules['type-enum'],
-  'subject-full-stop': [0, 'never'],
-  'subject-case': [0, 'never'],
-},
+  rules: {
+    'type-enum': typeEnum.rules['type-enum'],
+    'subject-full-stop': [0, 'never'],
+    'subject-case': [0, 'never'],
+  },
 };
